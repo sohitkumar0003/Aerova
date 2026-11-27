@@ -21,8 +21,10 @@ export default function FAQ({ items }) {
               <span>{it.q}</span>
               <span className="faq__toggle">{isOpen ? <Minus size={18} /> : <Plus size={18} />}</span>
             </button>
-            <div id={id} className="faq__a" role="region" hidden={!isOpen}>
-              <p>{it.a}</p>
+            <div id={id} className="faq__a" role="region" aria-hidden={!isOpen} inert={!isOpen}>
+              <div>
+                <p>{it.a}</p>
+              </div>
             </div>
           </div>
         );

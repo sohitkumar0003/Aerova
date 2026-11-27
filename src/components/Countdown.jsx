@@ -25,7 +25,7 @@ export default function Countdown({ label = 'Offer ends in', dark = false }) {
       <div className="countdown__units" role="timer" aria-live="off">
         {Object.entries(t).map(([unit, v]) => (
           <div key={unit} className="countdown__unit">
-            <strong>{String(v).padStart(2, '0')}</strong>
+            <strong key={v}>{String(v).padStart(2, '0')}</strong>
             <span>{unit}</span>
           </div>
         ))}

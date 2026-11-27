@@ -46,7 +46,13 @@ export default function Header() {
         </div>
         <nav className="mobile-menu__links" aria-label="Mobile">
           {navLinks.map((l, i) => (
-            <NavLink key={l.to} to={l.to} end className={({ isActive }) => `mobile-menu__link ${isActive ? 'is-active' : ''}`}>
+            <NavLink
+              key={l.to}
+              to={l.to}
+              end
+              style={{ '--i': i }}
+              className={({ isActive }) => `mobile-menu__link ${isActive ? 'is-active' : ''}`}
+            >
               <span className="mobile-menu__num">0{i + 1}</span>
               <span className="mobile-menu__label">{l.label}</span>
               <ArrowUpRight size={20} />

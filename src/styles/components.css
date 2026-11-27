@@ -586,8 +586,10 @@
   background: var(--ink);
   color: #fff;
 }
-.faq__a {
+.faq__a p {
   padding: 0 64px 26px 0;
+}
+.faq__a {
   font-size: 17px;
   line-height: 1.6;
   color: var(--muted);
@@ -1476,8 +1478,10 @@
     height: 34px;
   }
   .faq__a {
-    padding: 0 0 18px;
     font-size: 14px;
+  }
+  .faq__a p {
+    padding: 0 0 18px;
   }
   .seg-tabs {
     width: 100%;

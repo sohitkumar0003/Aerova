@@ -1,8 +1,10 @@
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
+import useReveal from '../hooks/useReveal.js';
 
 /** Outer page frame: grey canvas, stacked rounded cards, shared footer. */
 export function PageShell({ children }) {
+  useReveal();
   return (
     <div className="page">
       {children}

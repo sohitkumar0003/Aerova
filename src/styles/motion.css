@@ -1,0 +1,339 @@
+/* =========================================================
+   Motion — subtle, slow-out easing. One language for the whole site:
+   things rise ~24px and settle; nothing bounces or spins.
+   ========================================================= */
+:root {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes dropIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes jetIn {
+  from {
+    opacity: 0;
+    transform: translate3d(80px, 18px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes jetFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-6px, -10px, 0);
+  }
+}
+@keyframes tick {
+  from {
+    opacity: 0;
+    transform: translateY(-40%);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes pinPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.55);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0);
+  }
+}
+
+/* ---------- Page change: soft fade ---------- */
+.page {
+  animation: fadeIn 0.5s var(--ease-soft) both;
+}
+
+/* ---------- Scroll reveal (classes added by useReveal) ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s var(--ease-out) var(--reveal-delay, 0ms),
+    transform 0.9s var(--ease-out) var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  animation: dropIn 0.7s var(--ease-out) both;
+}
+
+/* ---------- Home hero entrance ---------- */
+.home-hero__text > * {
+  animation: riseIn 0.9s var(--ease-out) both;
+}
+.home-hero__text > :nth-child(1) {
+  animation-delay: 0.15s;
+}
+.home-hero__text > :nth-child(2) {
+  animation-delay: 0.25s;
+}
+.home-hero__text > :nth-child(3) {
+  animation-delay: 0.38s;
+}
+.home-hero__jet {
+  animation:
+    jetIn 1.4s var(--ease-out) 0.1s both,
+    jetFloat 7s ease-in-out 1.6s infinite;
+}
+.charter-card {
+  animation: riseIn 0.9s var(--ease-out) 0.55s both;
+}
+.home-hero .booking {
+  animation: riseIn 0.9s var(--ease-out) 0.65s both;
+}
+
+/* ---------- Inner page hero entrance ---------- */
+.page-hero__content > *,
+.page-hero__row > * {
+  animation: riseIn 0.9s var(--ease-out) both;
+}
+.page-hero__content > .breadcrumb {
+  animation-delay: 0.1s;
+}
+.page-hero__row > :nth-child(1) {
+  animation-delay: 0.18s;
+}
+.page-hero__row > :nth-child(2) {
+  animation-delay: 0.3s;
+}
+.page-hero > :nth-child(n + 3) {
+  animation: riseIn 0.9s var(--ease-out) 0.42s both;
+}
+.page-hero > :nth-child(n + 4) {
+  animation-delay: 0.52s;
+}
+
+/* ---------- Hover micro-interactions ---------- */
+.deal,
+.route,
+.testi,
+.coupon,
+.office,
+.region-tile,
+.step,
+.promo-card,
+.cta-card,
+.overlay-card,
+.channel {
+  transition:
+    transform 0.45s var(--ease-out),
+    box-shadow 0.45s var(--ease-out),
+    background-color 0.3s var(--ease-soft);
+}
+.deal:hover,
+.route:hover,
+.testi:hover,
+.coupon:hover,
+.office:hover,
+.step:hover,
+.promo-card:hover,
+.cta-card:hover,
+.overlay-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+}
+.card--dark .deal:hover {
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+.region-tile:hover {
+  transform: translateY(-3px);
+}
+.region-tile__arrow,
+.overlay-card__arrow,
+.dest__price .round-btn,
+.channel__arrow {
+  transition: transform 0.4s var(--ease-out);
+}
+.region-tile:hover .region-tile__arrow,
+.overlay-card:hover .overlay-card__arrow,
+.dest:hover .dest__price .round-btn,
+.channel:hover .channel__arrow {
+  transform: rotate(45deg);
+}
+.dest__img,
+.guide__img {
+  transition: transform 0.7s var(--ease-out), filter 0.7s var(--ease-out);
+}
+.dest:hover .dest__img,
+.guide:hover .guide__img {
+  transform: scale(1.015);
+  filter: brightness(1.04);
+}
+.nav-pill,
+.chip,
+.seg-tabs button,
+.trip-opt {
+  transition:
+    background-color 0.3s var(--ease-soft),
+    color 0.3s var(--ease-soft),
+    border-color 0.3s var(--ease-soft);
+}
+.round-btn,
+.site-header__cta,
+.site-footer__top-btn {
+  transition: transform 0.35s var(--ease-out);
+}
+.site-header__cta:hover,
+.site-footer__top-btn:hover {
+  transform: translateY(-2px);
+}
+.site-header__cta-icon {
+  transition: transform 0.35s var(--ease-out);
+}
+.site-header__cta:hover .site-header__cta-icon {
+  transform: rotate(45deg);
+}
+
+/* ---------- FAQ: smooth height ---------- */
+.faq__a {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s var(--ease-out);
+}
+.faq__a > div {
+  overflow: hidden;
+}
+.faq__a p {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    opacity 0.35s var(--ease-soft),
+    transform 0.45s var(--ease-out);
+}
+.faq__item.is-open .faq__a {
+  grid-template-rows: 1fr;
+}
+.faq__item.is-open .faq__a p {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.08s;
+}
+.faq__toggle {
+  transition:
+    background-color 0.3s var(--ease-soft),
+    color 0.3s var(--ease-soft),
+    transform 0.45s var(--ease-out);
+}
+.faq__item.is-open .faq__toggle {
+  transform: rotate(180deg);
+}
+
+/* ---------- Mobile menu: links slide in one after another ---------- */
+.mobile-menu__link,
+.mobile-menu__bottom {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.5s var(--ease-out),
+    transform 0.6s var(--ease-out);
+}
+.mobile-menu.is-open .mobile-menu__link,
+.mobile-menu.is-open .mobile-menu__bottom {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(var(--i, 0) * 60ms + 120ms);
+}
+.mobile-menu.is-open .mobile-menu__bottom {
+  transition-delay: 460ms;
+}
+
+/* ---------- Countdown digits ---------- */
+.countdown__unit strong {
+  display: inline-block;
+  animation: tick 0.45s var(--ease-out);
+}
+
+/* ---------- Map pins: gentle pulse ---------- */
+.map-pin i {
+  animation: pinPulse 2.6s var(--ease-soft) infinite;
+}
+.map-pin:nth-child(3n) i {
+  animation-delay: 0.9s;
+}
+.map-pin:nth-child(3n + 1) i {
+  animation-delay: 1.7s;
+}
+
+/* ---------- Fleet slider: smoother swap ---------- */
+.fleet__img {
+  animation: jetIn 0.7s var(--ease-out);
+}
+.fleet__details {
+  animation: fadeIn 0.5s var(--ease-soft);
+}
+.fleet__info > *,
+.fleet__specs,
+.fleet__chips {
+  animation: riseIn 0.6s var(--ease-out) both;
+}
+.fleet__info > :nth-child(2) {
+  animation-delay: 0.05s;
+}
+.fleet__info > :nth-child(3) {
+  animation-delay: 0.1s;
+}
+.fleet__specs {
+  animation-delay: 0.15s;
+}
+.fleet__chips {
+  animation-delay: 0.2s;
+}
+
+/* ---------- Respect "reduce motion" ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
